@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.h                                        :+:    :+:            */
+/*   ft_set_flags2.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/08 22:09:39 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/10 19:00:36 by kclaes        ########   odam.nl         */
+/*   Created: 2025/05/10 18:07:00 by kclaes        #+#    #+#                 */
+/*   Updated: 2025/05/10 19:19:24 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdbool.h>
+#include "ft_printf.h"
 
-// "      42" = right_justf
-// "42      " = left_justf
-// "00000042" = perc_flag
-// "-0000042" = 0_flag
-typedef struct s_flags
+void	ft_reset_flags(t_flags *flags)
 {
-	int		right_justf;
-	int		left_justf;
-	int		zeros_width;
-	char	perc_zero;
-	bool	nbr_neg;
-	bool	nbr_zero;
-	char	type;
-}	t_flags;
-
-#endif
+	flags->right_justf = 0;
+	flags->left_justf = 0;
+	flags->zeros_width = 0;
+	flags->perc_zero = 0;
+	flags->nbr_neg = 0;
+	flags->nbr_zero = 0;
+	flags->type = 0;
+}
