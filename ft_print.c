@@ -6,7 +6,13 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/08 22:10:09 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/10 15:24:16 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
+
+void	ft_printf(char *s, ...)
+{
+	
+}
