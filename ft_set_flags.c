@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/10 18:07:00 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/11 15:55:16 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/11 16:31:33 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ char	*ft_get_flags(char *s, t_flags *flags, int *error)
 static char	*ft_set_left_justf(char **s, t_flags *flags, int *error)
 {
 	(*s)++;
+	if (**s == '0')
+	{
+		*error = 1;
+		return (ft_strdup(RED"~[FLAGS ERROR]: \"%-\", "\
+							"- flag can not be used together with "\
+							"'0'~"RESET));
+	}
 	if (!ft_isdigit(**s))
 	{
 		*error = 1;
@@ -118,7 +125,9 @@ static char	*ft_set_type(char c, t_flags *flags, int *error)
 		flags->type = 'x';
 	else if (c == 'X')
 		flags->type = 'X';
-	return (ft_last_error_check(c, error));
+	else
+		return (ft_last_error_check(c, error));
+	return (NULL);
 }
 
 #include <stdlib.h>

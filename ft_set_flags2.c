@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/10 18:07:00 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/11 15:55:46 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/11 16:01:33 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,4 @@ char	*ft_last_error_check(char c, int *error)
 		return (ft_strdup(RED"~[TYPE ERROR or UNKNOWN FLAG]:"\
 				" type or flag not supported by ft_printf~"RESET));
 	}
-	return (NULL);
 }

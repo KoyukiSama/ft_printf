@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:40:21 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/11 14:33:00 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/11 16:22:18 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-char	*ft_itoa_base_signed(int val, char *base, bool *sign);
-char	*ft_itoa_base_unsigned(uintptr_t val, char *base);
+char	*ft_itoa_base_signed(int val, const char *base, bool *sign);
+char	*ft_itoa_base_unsigned(uintptr_t val, const char *base);
 
-char	*ft_itoa_base_signed(int val, char *base, bool *sign)
+char	*ft_itoa_base_signed(int val, const char *base, bool *sign)
 {
 	uintptr_t	uval;
 
@@ -32,7 +32,7 @@ char	*ft_itoa_base_signed(int val, char *base, bool *sign)
 	return (ft_itoa_base_unsigned(uval, base));
 }
 
-char	*ft_itoa_base_unsigned(uintptr_t val, char *base)
+char	*ft_itoa_base_unsigned(uintptr_t val, const char *base)
 {
 	char	buffer[35];
 	char	*str;

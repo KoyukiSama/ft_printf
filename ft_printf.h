@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:09:39 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/11 15:49:10 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/11 16:24:41 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define FT_PRINTF_H
 # include <stdbool.h>
 
+# define HEX_UPP "0123456789ABCDEF"
+# define HEX_LOW "0123456789abcdef"
+# define DEC "0123456789"
 # define RED "\033[31m"
 # define RESET "\033[0m"
 
