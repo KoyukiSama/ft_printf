@@ -28,7 +28,8 @@ int main(void)
 	printf(".0d -> |%.0d|\n\n", 0);   // ||        precision=0 + value=0 → prints nothing
 	// %d %i
 	printf("505d ->  |%505d|\n", 99599599);
-	printf("5.5d ->  |%+5.5d|\n", 99599599);
+	printf(".5d ->  |%0d|\n", 99599599);
+	printf("100.5d ->  |%100.5d|\n", 599599);
 	
 
 	char hello[] = "hi";
