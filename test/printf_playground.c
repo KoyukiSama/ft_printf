@@ -7,7 +7,7 @@ int main(void)
 	// %c
 	//printf("|%.3c|\n", 'c'); 		// WRONG .3c
 	//printf("|%03c|\n", 'c'); 		// WRONG 03c
-	printf(" 3c -> |%3c|\n", 'c');  // RIGHT  3c
+	printf("my age: %i\n", 500);  // RIGHT  3c
 	printf("-3c -> |%-3c|\n", 'c'); // RIGHT -3c
 	printf("-3c -> |%-3c|\n\n", '\0'); // 
 	
@@ -29,7 +29,7 @@ int main(void)
 	// %d %i
 	printf("505d ->  |%505d|\n", 99599599);
 	printf(".5d ->  |%0d|\n", 99599599);
-	printf("100.5d ->  |%100.5d|\n", 599599);
+	printf("100.5d ->  |%-100d|\n", 599599);
 	
 
 	char hello[] = "hi";

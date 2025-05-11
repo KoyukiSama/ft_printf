@@ -6,13 +6,16 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:09:39 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/10 19:00:36 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/11 15:49:10 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <stdbool.h>
+
+# define RED "\033[31m"
+# define RESET "\033[0m"
 
 // "      42" = right_justf
 // "42      " = left_justf
