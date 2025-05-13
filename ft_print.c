@@ -6,13 +6,14 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/11 18:20:17 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/13 18:54:19 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_helpers.h"
 #include "ft_printf.h"
 #include "libft.h"
+#include "ft_arrlst.h"
 #include <stdarg.h>
 #include <stddef.h>
 #include <unistd.h>
@@ -45,17 +46,30 @@ void	ft_printf(char *s, ...)
 	va_end(ap);
 }
 
-static t_list	*ft_lst_malloc_content(t_list **lst, char *s, size_t s_len);
-static void	ft_del_content(t_content *content);
-
-char	*ft_lst_add_arg(t_list **lst, va_list ap, \
-						t_flags *flags, char *s)
+char	*ft_arrlst_add_arg(t_arrlst **arrlst, va_list ap, t_flags *flags)
 {
-	;
+	char	*str;
+	
+	if (flags->type == 'c')
+		str = ft_ctostr(va_arg(ap, char));
+	if (flags->type == 's')
+		str = ft_strtoa(va_arg(ap, char *));
+	if (flags->type == 'p')
+		str = ft_ptoa(va_arg(ap, void *));
+	if (flags->type == 'i')
+		str = ft_itoa_base_signed(va_arg(ap, char *), "0123456789", (flags->nbr_neg));
+	if (flags->type == 'u')
+		str = ft_itoa_base_unsigned(va_arg(ap, char *), "0123456789");
+	if (flags->type == 'x')
+		str = ft_itoa_base_unsigned(va_arg(ap, char *), "0123456789abcdef");
+	if (flags->type == 'X')
+		str = ft_itoa_base_unsigned(va_arg(ap, char *), "0123456789ABCDEF");
+	// TODO
 }
 
 // get's the next % or '\0' if not found
-char	*ft_lst_add_str(t_list **lst, char *s)
+// and mallocs the str into arrlst
+char	*ft_arrlst_append_str(t_arrlst **lst, char *s)
 {
 	char		*s_end;
 	size_t		s_len;
@@ -66,33 +80,7 @@ char	*ft_lst_add_str(t_list **lst, char *s)
 	if (*(s_end + 1) == '%')
 		s_end += 2;
 	s_len = s_end - s;
-	
 	return (s_end);
-}
-
-static t_list	*ft_lst_malloc_content(t_list **lst, char *s, size_t s_len)
-{
-	char		*new_str;
-	t_content	*new_content;
-	t_list		*new_node;
-	
-	new_str = ft_str_mallocpy(s, s_len);
-	if (!new_str)
-		return (NULL);
-	new_content = malloc(sizeof(*new_content));
-	if (!new_content)
-		return (free(new_str), NULL);
-	new_node = ft_lstnew(new_content);
-	if (!new_node)
-		return (ft_del_content(new_content), NULL);
-	ft_lstadd_back(lst, ft_lstnew());
-	ft_lstdelone();
-}
-
-static void	ft_del_content(t_content *content)
-{
-	free(content->s);
-	free(content);
 }
 
 void	ft_printn(char *s, size_t len)

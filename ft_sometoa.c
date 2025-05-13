@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_itoa_base.c                                     :+:    :+:            */
+/*   ft_sometoa.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:40:21 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/11 17:33:09 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/13 18:47:01 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 #include <stdint.h>
-
-
 
 char	*ft_itoa_base_signed(int val, const char *base, bool *sign)
 {
@@ -48,6 +46,57 @@ char	*ft_itoa_base_unsigned(uintptr_t val, const char *base)
 		val /= base_len;
 	}
 	return (ft_strdup(str));
+}
+
+char	*ft_strtoa(char *str)
+{
+	char	*new_str;
+
+	if (str == NULL)
+	{
+		new_str = strdup("(null)");
+		if (!new_str)
+			return (NULL);
+		return (new_str);
+	}
+	new_str = strdup(str);
+	if (!new_str)
+		return (NULL);
+	return (new_str);
+}
+
+char	*ft_ptoa(void *p)
+{
+	char	*str;
+	char	*str_0x;
+
+	if (p == NULL)
+	{
+		str = strdup("(nil)");
+		if (!str)
+			return (NULL);
+		return (str);
+	}
+	str = ft_itoa_base_unsigned((uintptr_t) p, "0123456789abcdef");
+	if (!str)
+		return (NULL);
+	str_0x = ft_strjoin("0x", str);
+	free(str);
+	if (!str_0x)
+		return (NULL);
+	return (str_0x);
+}
+
+char	*ft_ctoa(char c)
+{
+	char	*s;
+
+	s = malloc(2);
+	if (!s)
+		return (NULL);
+	s[0] = c;
+	s[1] = '\0';
+	return (s);
 }
 
 // #include <stdio.h>

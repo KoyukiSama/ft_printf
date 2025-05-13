@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/10 18:07:00 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/11 16:31:33 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/13 17:36:31 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,9 @@ static char	*ft_set_type(char c, t_flags *flags, int *error)
 		flags->type = 'X';
 	else
 		return (ft_last_error_check(c, error));
+	if (flags->type == 'c' || flags->type == 'p' ||
+		((flags->type == 's') && flags->perc_zero == '0'))
+		flags->perc_zero = 0;
 	return (NULL);
 }
 

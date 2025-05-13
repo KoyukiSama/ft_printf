@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:09:39 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/11 18:18:53 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/13 18:21:52 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,5 @@ typedef struct s_flags
 	bool	nbr_zero;
 	char	type;
 }	t_flags;
-
-typedef struct s_content
-{
-	char	*s;
-	int		freeable;
-}	t_content;
 
 #endif

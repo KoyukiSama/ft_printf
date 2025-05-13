@@ -23,7 +23,7 @@ int main(void)
 	printf("05d ->  |%05d|\n", 42);
 	printf(".5d ->  |%.5d|\n", 42);
 	printf("05d ->  |%05d|\n", -42);  // |-0042|   width=5 includes the “-” so you get 2 zeros  
-	printf("-0.5d -> |%-0d|\n", -42);   // |-00042|  precision=5 applies to the “42” only, then sign  
+	//printf("-0.5d -> |%-0d|\n", -42);   // |-00042|  precision=5 applies to the “42” only, then sign  
 	printf(" 0d -> |%0d|\n", 0);      // |0|       no width specified, zero‐flag ignored, prints “0”  
 	printf(".0d -> |%.0d|\n\n", 0);   // ||        precision=0 + value=0 → prints nothing
 	// %d %i
