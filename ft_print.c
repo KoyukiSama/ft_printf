@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/13 18:54:19 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/14 12:07:49 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 #include "ft_arrlst.h"
+#include <stdlib.h>
 #include <stdarg.h>
 #include <stddef.h>
 #include <unistd.h>
@@ -64,7 +65,10 @@ char	*ft_arrlst_add_arg(t_arrlst **arrlst, va_list ap, t_flags *flags)
 		str = ft_itoa_base_unsigned(va_arg(ap, char *), "0123456789abcdef");
 	if (flags->type == 'X')
 		str = ft_itoa_base_unsigned(va_arg(ap, char *), "0123456789ABCDEF");
-	// TODO
+	if (!str)
+		return (ft_arrlst_free(arrlst, free));
+	if (flags->left_justf || flags->right_justf)
+		
 }
 
 // get's the next % or '\0' if not found

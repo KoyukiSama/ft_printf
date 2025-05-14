@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/10 18:07:00 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/13 17:36:31 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/14 12:11:21 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static char	*ft_set_left_justf(char **s, t_flags *flags, int *error)
 	{
 		*error = 1;
 		return (ft_strdup(RED"~[FLAGS ERROR]: \"%-\", "\
-							"no number specified~"RESET)); // TODO FREE THIS
+							"no number specified~"RESET));
 	}
 	flags->left_justf = ft_atoi(*s);
 	while (ft_isdigit(**s))
@@ -125,33 +125,37 @@ static char	*ft_set_type(char c, t_flags *flags, int *error)
 		flags->type = 'x';
 	else if (c == 'X')
 		flags->type = 'X';
+	else if (c == '%')
+		flags->type = '%';
 	else
 		return (ft_last_error_check(c, error));
-	if (flags->type == 'c' || flags->type == 'p' ||
-		((flags->type == 's') && flags->perc_zero == '0'))
+	if (flags->type == 'c' || flags->type == 'p'
+		|| ((flags->type == 's') && flags->perc_zero == '0'))
 		flags->perc_zero = 0;
+	if (flags->type == 'x' || flags->type == 'X' || flags->type == 'u')
+		flags->nbr_neg = 0;
 	return (NULL);
 }
 
-#include <stdlib.h>
-#include <stdio.h>
-int main(int argc, char *argv[])
-{
-	(void) argc;
-	t_flags	flags = {0};
-	int		error;
-	char	*s = argv[1];
-	char	*error_msg;
+// #include <stdlib.h>
+// #include <stdio.h>
+// int main(int argc, char *argv[])
+// {
+// 	(void) argc;
+// 	t_flags	flags = {0};
+// 	int		error;
+// 	char	*s = argv[1];
+// 	char	*error_msg;
 
-	error_msg = ft_get_flags(s, &flags, &error);
-	if (error)
-	{
-		printf("%s\n", error_msg);
-		free(error_msg);
-	}
-	printf("%i :left_justify\n", flags.left_justf);
-	printf("%i :right_justify\n", flags.right_justf);
-	printf("%c :perc_zero\n", flags.perc_zero);
-	printf("%i :zeros_width\n", flags.zeros_width);
-	printf("%c :type\n", flags.type);
-}
+// 	error_msg = ft_get_flags(s, &flags, &error);
+// 	if (error)
+// 	{
+// 		printf("%s\n", error_msg);
+// 		free(error_msg);
+// 	}
+// 	printf("%i :left_justify\n", flags.left_justf);
+// 	printf("%i :right_justify\n", flags.right_justf);
+// 	printf("%c :perc_zero\n", flags.perc_zero);
+// 	printf("%i :zeros_width\n", flags.zeros_width);
+// 	printf("%c :type\n", flags.type);
+// }
