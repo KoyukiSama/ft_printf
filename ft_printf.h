@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:09:39 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/13 18:21:52 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/14 12:56:30 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_flags
 	int		zeros_width;
 	char	perc_zero;
 	bool	nbr_neg;
-	bool	nbr_zero;
 	char	type;
 }	t_flags;
 

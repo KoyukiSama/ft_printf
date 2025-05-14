@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/14 12:07:49 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/14 15:33:10 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,24 @@ void	ft_printf(char *s, ...)
 	va_end(ap);
 }
 
-char	*ft_arrlst_add_arg(t_arrlst **arrlst, va_list ap, t_flags *flags)
+static char	*ft_arrlst_add_arg_get_str(va_list ap, t_flags *flags);
+
+t_arrlst *ft_arrlst_add_arg(t_arrlst **arrlst, va_list ap, t_flags *flags)
 {
 	char	*str;
-	
+
+	str = ft_arrlst_add_arg_get_str(ap, flags);
+	if (!str)
+		return (ft_arrlst_free(arrlst, free), NULL);
+	if (!ft_arrlst_append_flag_strs(arrlst, *flags, str))
+		return (NULL);
+	return (*arrlst);
+}
+
+static char	*ft_arrlst_add_arg_get_str(va_list ap, t_flags *flags)
+{
+	char	*str;
+
 	if (flags->type == 'c')
 		str = ft_ctostr(va_arg(ap, char));
 	if (flags->type == 's')
@@ -65,10 +79,9 @@ char	*ft_arrlst_add_arg(t_arrlst **arrlst, va_list ap, t_flags *flags)
 		str = ft_itoa_base_unsigned(va_arg(ap, char *), "0123456789abcdef");
 	if (flags->type == 'X')
 		str = ft_itoa_base_unsigned(va_arg(ap, char *), "0123456789ABCDEF");
-	if (!str)
-		return (ft_arrlst_free(arrlst, free));
-	if (flags->left_justf || flags->right_justf)
-		
+	if (flags->type == '%')
+		str = ft_strdup("%");
+	return (str);
 }
 
 // get's the next % or '\0' if not found
