@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/14 15:33:10 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/15 17:31:00 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,33 @@
 #include <stddef.h>
 #include <unistd.h>
 
-void	ft_printf(char *s, ...)
-{
-	size_t	len;
-	int		error;
-	t_flags	flags;
-	va_list	ap;
+static char	*ft_arrlst_add_arg_get_str(va_list ap, t_flags *flags);
 
+int	ft_printf(char *s, ...)
+{
+	int			error;
+	t_flags		flags;
+	va_list		ap;
+	t_arrlst	*arrlst;
+
+	arrlst = ft_arrlst_create(10, 0);
+	if (!arrlst)
+		return (NULL);
 	va_start(ap, s);
-	len = 0;
+	ft_printf_helpr(s, arrlst, error, flags, ap);
+	va_end(ap);
+}
+
+int	ft_printf_helpr(char *s, t_arrlst *arrlst, int error, \
+					t_flags flags, va_list ap)
+{
 	while (*s)
 	{
-		if (*s == '%' && *(s + 1) != '%')
+		if (*s == '%')
 		{
 			ft_reset_flags(&flags);
-			ft_get_flags(s, &flags, &error);
-			ft_lst_add_arg();
+			s = ft_get_flags(s, &flags, &error);
+			ft_arrlst_add_arg(&arrlst, ap, &flags);
 		}
 		else
 		{
@@ -44,10 +55,7 @@ void	ft_printf(char *s, ...)
 			s = s_end;
 		}
 	}
-	va_end(ap);
 }
-
-static char	*ft_arrlst_add_arg_get_str(va_list ap, t_flags *flags);
 
 t_arrlst *ft_arrlst_add_arg(t_arrlst **arrlst, va_list ap, t_flags *flags)
 {
@@ -98,9 +106,4 @@ char	*ft_arrlst_append_str(t_arrlst **lst, char *s)
 		s_end += 2;
 	s_len = s_end - s;
 	return (s_end);
-}
-
-void	ft_printn(char *s, size_t len)
-{
-	write(1, s, len);
 }
