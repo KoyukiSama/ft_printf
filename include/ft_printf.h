@@ -6,12 +6,13 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:09:39 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/14 12:56:30 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 18:55:23 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
 # include <stdbool.h>
 
 # define HEX_UPP "0123456789ABCDEF"

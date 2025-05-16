@@ -6,17 +6,17 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/11 17:32:11 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 18:52:17 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 18:55:12 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_HELPERS_H
 # define PRINTF_HELPERS_H
 
-#include "ft_arrlst.h"
-#include "ft_printf.h"
-#include "stdint.h"
-#include <stdarg.h>
+# include "ft_arrlst.h"
+# include "ft_printf.h"
+# include "stdint.h"
+# include <stdarg.h>
 
 // (pf_sometoa.c)
 char		*ft_itoa_base_signed(int val, const char *base, bool *sign);
