@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 17:16:37 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 17:59:59 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ int	ft_printf(char *s, ...)
 	if (!arrlst)
 		return (NULL);
 	va_start(ap, s);
-	ft_printf_store_strs(s, arrlst, error, flags, ap);
+	if (!ft_printf_store_strs(s, arrlst, error, flags, ap))
+		return (-1);
 	va_end(ap);
+	return (ft_arrlst_free(arrlst, free), ft_printf_write(arrlst));
 }
 
 int	ft_printf_store_strs(char *s, t_arrlst *arrlst, int error, \
@@ -51,9 +53,20 @@ int	ft_printf_store_strs(char *s, t_arrlst *arrlst, int error, \
 		}
 		else
 		{
-			s = ft_arrlst_append_str(s);
+			s = ft_arrlst_append_str(&arrlst, s);
 			if (!s)
 				return (-1);
 		}
 	}
+	return (1);
+}
+
+int	ft_printf_write(t_arrlst *arrlst)
+{
+	char	*s_write;
+	int		len;
+
+	s_write = ft_extract_arrlst(arrlst, &len);
+	write(1, s_write, len);
+	return (len);
 }

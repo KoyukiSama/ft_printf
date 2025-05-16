@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_set_flags.c                                     :+:    :+:            */
+/*   pf_set_flags.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/10 18:07:00 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/15 17:03:37 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 17:57:54 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ static char	*ft_set_type(char c, t_flags *flags, int *error)
 // 	char	*s = argv[1];
 // 	char	*error_msg;
 
-// 	error_msg = ft_get_flags(s, &flags, &error);
+// 	error_msg = ft_get_flags(s, &f&lelags, &error);
 // 	if (error)
 // 	{
 // 		printf("%s\n", error_msg);
