@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 18:59:55 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/17 00:03:34 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	ft_printf_store_strs(char *s, t_arrlst *arrlst, int error, \
 						va_list ap);
 static int	ft_printf_write(t_arrlst *arrlst);
 
+#include <stdio.h>
 int	ft_printf(char *s, ...)
 {
 	int			error;
@@ -37,7 +38,7 @@ int	ft_printf(char *s, ...)
 	if (!ft_printf_store_strs(s, arrlst, error, ap))
 		return (-1);
 	va_end(ap);
-	return (ft_arrlst_free(&arrlst, free), ft_printf_write(arrlst));
+	return (ft_printf_write(arrlst));
 }
 
 static int	ft_printf_store_strs(char *s, t_arrlst *arrlst, int error, \
@@ -67,12 +68,17 @@ static int	ft_printf_store_strs(char *s, t_arrlst *arrlst, int error, \
 	return (1);
 }
 
+#include <stdio.h>
 static int	ft_printf_write(t_arrlst *arrlst)
 {
 	char	*s_write;
 	int		len;
 
 	s_write = ft_extract_arrlst(arrlst, &len);
+	if (!s_write)
+		return (ft_arrlst_free(&arrlst, free), -1);
+	ft_arrlst_free(&arrlst, free);
+	fprintf(stderr, RED"meow-len %i\n"RESET, len); // error hand
 	write(1, s_write, len);
 	free(s_write);
 	return (len);

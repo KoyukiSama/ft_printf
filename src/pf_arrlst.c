@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/16 17:04:04 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 19:10:04 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/17 00:16:17 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static char	*ft_arrlst_add_arg_get_str(va_list ap, t_flags *flags)
 
 // get's the next % or '\0' if not found
 // and mallocs the str into arrlst
+#include <stdio.h>
 char	*ft_arrlst_append_str(t_arrlst **arrlst, char *s)
 {
 	char		*s_end;
@@ -65,13 +66,21 @@ char	*ft_arrlst_append_str(t_arrlst **arrlst, char *s)
 
 	s_end = ft_strchr(s, '%');
 	if (s_end == NULL)
-		return (ft_strchr(s, '\0'));
+		s_end = ft_strchr(s, '\0');
 	s_len = s_end - s;
+	fprintf(stderr, RED"meow-len: %lu\n"RESET, s_len); // error hand
 	if (!ft_arrlst_append(arrlst, ft_str_mallocpy(s, s_len), free))
 		return (NULL);
+	fprintf(stderr, RED"str: %s\n"RESET, (char *)ft_arrlst_get_i(*arrlst, 0)); // error hand
+	fprintf(stderr, RED"str: %s\n"RESET, (char *)ft_arrlst_get_i(*arrlst, 1)); // error hand
+	fprintf(stderr, RED"str: %s\n"RESET, (char *)ft_arrlst_get_i(*arrlst, 2)); // error hand
+	fprintf(stderr, RED"%c\n"RESET, *(s_end - 1)); // err
+	char temp = *s_end + '0'; // err
+	fprintf(stderr, RED"%c\n"RESET, temp); // err
 	return (s_end);
 }
 
+#include <stdio.h>
 // returns parameter len: the length of the new malloced string
 // returns char	*: string from all arrlst content entries
 char	*ft_extract_arrlst(t_arrlst	*arrlst, int *len)
@@ -82,11 +91,13 @@ char	*ft_extract_arrlst(t_arrlst	*arrlst, int *len)
 	char	*s_ret;
 
 	*len = ft_extract_arrlst_strs_len(arrlst);
-	s_ret = malloc(*len);
-	s_curr = ft_arrlst_get_i(arrlst, 0);
-	i = 1;
+	s_ret = malloc(*len + 1);
+	if (!s_ret)
+		return (ft_arrlst_free(&arrlst, free), NULL);
+	fprintf(stderr, RED"meow\n"RESET); // err hand
+	i = 0;
 	j = 0;
-	while (s_curr)
+	while (j < (size_t)*len)
 	{
 		s_curr = ft_arrlst_get_i(arrlst, i);
 		while (*s_curr)
