@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/17 00:03:34 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/17 00:46:17 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static int	ft_printf_store_strs(char *s, t_arrlst *arrlst, int error, \
 		{
 			ft_reset_flags(&flags);
 			s = ft_get_flags(s, &flags, &error);
+			fprintf(stderr, RED"---s: %c\n"RESET, s[-1]);
+			fprintf(stderr, RED"---s: %c\n"RESET, s[0]);
 			if (error)
 				return (ft_putstr_fd(s, 1), ft_arrlst_free(&arrlst, free), \
 						free(s), -1);

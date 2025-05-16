@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/10 18:07:00 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 17:57:54 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/17 00:47:42 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_get_flags(char *s, t_flags *flags, int *error)
 		error_msg = ft_set_type(*s++, flags, error);
 	if (*error == 1)
 		return (error_msg);
-	return (++s);
+	return (s);
 }
 
 static char	*ft_set_left_justf(char **s, t_flags *flags, int *error)

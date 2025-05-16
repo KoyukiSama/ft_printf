@@ -3,6 +3,6 @@
 
 int main(void)
 {
-	ft_printf("hello, I am%s, nbr: %i\n", " yes", 55053902);
+	ft_printf("h%ss", " yes");
 	// line is bugged btw
 }
