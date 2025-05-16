@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/12 00:58:22 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/13 14:26:34 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 18:11:35 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_arrlst	*ft_arrlst_shrink(t_arrlst **arrlst, void (*del)(void *))
 			i++;
 		}
 		free((*arrlst)->arr);
-		free(*arrlst);	
+		free(*arrlst);
 		*arrlst = new_arrlst;
 		(*arrlst)->strt_cap = strt_cap;
 		(*arrlst)->strt_len = strt_len;
@@ -67,7 +67,7 @@ t_arrlst	*ft_arrlst_grow(t_arrlst **arrlst, void (*del)(void *))
 static void	ft_arrlst_grow_copy_init(t_arrlst *arrlst, t_arrlst *old_arrlst)
 {
 	size_t		i;
-	
+
 	i = 0;
 	while (i < arrlst->len)
 	{

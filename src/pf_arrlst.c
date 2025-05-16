@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/16 17:04:04 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 17:36:14 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 18:03:45 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static char	*ft_arrlst_add_arg_get_str(va_list ap, t_flags *flags);
 static int	ft_extract_arrlst_strs_len(t_arrlst *arrlst);
 
-t_arrlst *ft_arrlst_add_arg(t_arrlst **arrlst, va_list ap, t_flags *flags)
+t_arrlst	*ft_arrlst_add_arg(t_arrlst **arrlst, va_list ap, t_flags *flags)
 {
 	char	*str;
 
@@ -42,7 +42,8 @@ static char	*ft_arrlst_add_arg_get_str(va_list ap, t_flags *flags)
 	if (flags->type == 'p')
 		str = ft_ptoa(va_arg(ap, void *));
 	if (flags->type == 'i')
-		str = ft_itoa_base_signed(va_arg(ap, char *), "0123456789", (flags->nbr_neg));
+		str = ft_itoa_base_signed(va_arg(ap, char *), "0123456789", \
+									(flags->nbr_neg));
 	if (flags->type == 'u')
 		str = ft_itoa_base_unsigned(va_arg(ap, char *), "0123456789");
 	if (flags->type == 'x')

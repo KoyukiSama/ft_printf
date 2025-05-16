@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_set_flags2.c                                    :+:    :+:            */
+/*   pf_set_flags2.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/10 18:07:00 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/14 12:27:13 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 18:09:55 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	ft_reset_flags(t_flags *flags)
 	flags->type = 0;
 }
 
-int		ft_is_typelist(char c)
+int	ft_is_typelist(char c)
 {
-	if (c == 'c' || c == 's' || c == 'p' ||
-		c == 'd' || c == 'i' || c == 'u' ||
-		c == 'x' || c == 'X')
+	if (c == 'c' || c == 's' || c == 'p'
+		|| c == 'd' || c == 'i' || c == 'u'
+		|| c == 'x' || c == 'X')
 		return (1);
 	return (0);
 }

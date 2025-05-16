@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/11 17:32:11 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 17:45:35 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 18:10:19 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ char		*ft_get_flags(char *s, t_flags *flags, int *error);
 void		ft_reset_flags(t_flags *flags);
 
 // (pf_bonus_conversion.c)
-t_arrlst	*ft_arrlst_append_flag_strs(t_arrlst **arrlst, t_flags flags, char *str);
+t_arrlst	*ft_arrlst_append_flag_strs(t_arrlst **arrlst, \
+										t_flags flags, char *str);
 
 // (pf_arrlst.c)
 t_arrlst	*ft_arrlst_add_arg(t_arrlst **arrlst, va_list ap, t_flags *flags);

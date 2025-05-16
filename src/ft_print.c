@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 17:59:59 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 18:07:53 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 int	ft_printf(char *s, ...)
 {
 	int			error;
-	t_flags		flags;
 	va_list		ap;
 	t_arrlst	*arrlst;
 
@@ -30,15 +29,17 @@ int	ft_printf(char *s, ...)
 	if (!arrlst)
 		return (NULL);
 	va_start(ap, s);
-	if (!ft_printf_store_strs(s, arrlst, error, flags, ap))
+	if (!ft_printf_store_strs(s, arrlst, error, ap))
 		return (-1);
 	va_end(ap);
 	return (ft_arrlst_free(arrlst, free), ft_printf_write(arrlst));
 }
 
 int	ft_printf_store_strs(char *s, t_arrlst *arrlst, int error, \
-					t_flags flags, va_list ap)
+						va_list ap)
 {
+	t_flags	flags;
+
 	while (*s)
 	{
 		if (*s == '%')
@@ -68,5 +69,6 @@ int	ft_printf_write(t_arrlst *arrlst)
 
 	s_write = ft_extract_arrlst(arrlst, &len);
 	write(1, s_write, len);
+	free(s_write);
 	return (len);
 }

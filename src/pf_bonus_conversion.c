@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_bonus_conversion.c                              :+:    :+:            */
+/*   pf_bonus_conversion.c                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 12:08:40 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/14 15:30:13 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 18:02:56 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 static char	*ft_justify_malloc(t_flags flags, char *str);
 static char	*ft_zeros_malloc(t_flags flags, char *str);
 
-t_arrlst	*ft_arrlst_append_flag_strs(t_arrlst **arrlst, t_flags flags, char *str)
+t_arrlst	*ft_arrlst_append_flag_strs(t_arrlst **arrlst, \
+										t_flags flags, char *str)
 {
 	if (flags.right_justf)
 	{
@@ -60,7 +61,7 @@ static char	*ft_justify_malloc(t_flags flags, char *str)
 	if (justify_length <= 0)
 		return (NULL);
 	justify = malloc(justify_length + 1);
-	if(!justify)
+	if (!justify)
 		return (NULL);
 	i = 0;
 	while (i < justify_length)
@@ -82,7 +83,7 @@ static char	*ft_zeros_malloc(t_flags flags, char *str)
 	if (!zero_s)
 		return (NULL);
 	i = 0;
-	while (i < zero_s_length);
+	while (i < zero_s_length)
 		zero_s[i++] = '0';
 	zero_s[i] = '\0';
 	if (flags.nbr_neg == true)
