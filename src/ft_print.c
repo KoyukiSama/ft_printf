@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/17 00:46:17 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/17 01:08:31 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static int	ft_printf_store_strs(char *s, t_arrlst *arrlst, int error, \
 						va_list ap);
 static int	ft_printf_write(t_arrlst *arrlst);
 
-#include <stdio.h>
 int	ft_printf(char *s, ...)
 {
 	int			error;
@@ -36,7 +35,7 @@ int	ft_printf(char *s, ...)
 		return (-1);
 	va_start(ap, s);
 	if (!ft_printf_store_strs(s, arrlst, error, ap))
-		return (-1);
+		return (va_end(ap), -1);
 	va_end(ap);
 	return (ft_printf_write(arrlst));
 }
@@ -52,25 +51,22 @@ static int	ft_printf_store_strs(char *s, t_arrlst *arrlst, int error, \
 		{
 			ft_reset_flags(&flags);
 			s = ft_get_flags(s, &flags, &error);
-			fprintf(stderr, RED"---s: %c\n"RESET, s[-1]);
-			fprintf(stderr, RED"---s: %c\n"RESET, s[0]);
 			if (error)
 				return (ft_putstr_fd(s, 1), ft_arrlst_free(&arrlst, free), \
-						free(s), -1);
+						free(s), 0);
 			if (!ft_arrlst_add_arg(&arrlst, ap, &flags))
-				return (-1);
+				return (0);
 		}
 		else
 		{
 			s = ft_arrlst_append_str(&arrlst, s);
 			if (!s)
-				return (-1);
+				return (0);
 		}
 	}
 	return (1);
 }
 
-#include <stdio.h>
 static int	ft_printf_write(t_arrlst *arrlst)
 {
 	char	*s_write;
@@ -80,7 +76,6 @@ static int	ft_printf_write(t_arrlst *arrlst)
 	if (!s_write)
 		return (ft_arrlst_free(&arrlst, free), -1);
 	ft_arrlst_free(&arrlst, free);
-	fprintf(stderr, RED"meow-len %i\n"RESET, len); // error hand
 	write(1, s_write, len);
 	free(s_write);
 	return (len);
