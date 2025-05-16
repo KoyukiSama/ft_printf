@@ -55,7 +55,9 @@ fclean: clean
 re: fclean all
 
 test: re
-	cc -g -fsanitize=address -Wall -Wextra -Werror -I./include ./test/printf_test1.c ./libftprintf.a
+	cc -g -fsanitize=address -fsanitize=leak -Wall -Wextra -Werror -I./include ./test/printf_test1.c ./libftprintf.a
 	./a.out
+	rm -f ./a.out
+	$(MAKE) fclean
 
 .PHONY: all clean fclean re test

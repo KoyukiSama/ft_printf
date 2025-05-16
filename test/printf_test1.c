@@ -3,7 +3,9 @@
 
 int main(void)
 {
-	int len = ft_printf("h%ss, %.i\n", " yes", 592059);
+	int len;
+
+	len = ft_printf("|%d|", 5920598);
 	ft_printf("%i", len);
 	// line is bugged btw
 }
