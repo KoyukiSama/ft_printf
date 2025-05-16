@@ -6,13 +6,17 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/11 17:32:11 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 18:10:19 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 18:52:17 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PRINTF_HELPERS_H
+# define PRINTF_HELPERS_H
 
 #include "ft_arrlst.h"
 #include "ft_printf.h"
 #include "stdint.h"
+#include <stdarg.h>
 
 // (pf_sometoa.c)
 char		*ft_itoa_base_signed(int val, const char *base, bool *sign);
@@ -35,3 +39,5 @@ t_arrlst	*ft_arrlst_append_flag_strs(t_arrlst **arrlst, \
 t_arrlst	*ft_arrlst_add_arg(t_arrlst **arrlst, va_list ap, t_flags *flags);
 char		*ft_arrlst_append_str(t_arrlst **arrlst, char *s);
 char		*ft_extract_arrlst(t_arrlst	*arrlst, int *len);
+
+#endif

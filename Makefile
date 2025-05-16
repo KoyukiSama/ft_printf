@@ -2,10 +2,15 @@
 NAME		:= libftprintf.a
 CC			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
-INCLUDE		:= -I./include -I./libft
+INCLUDE		:= -I./include
 
-SRC_PF		:= ft_print.c pf_arrlst.c pf_bonus_conversion.c
-				pf_set_flags.c pf_set_flags2.c pf_sometoa.c
+DIR_SRC		:= ./src
+SRC_PF		:= $(DIR_SRC)/ft_print.c \
+				$(DIR_SRC)/pf_arrlst.c \
+				$(DIR_SRC)/pf_bonus_conversion.c \
+				$(DIR_SRC)/pf_set_flags.c \
+				$(DIR_SRC)/pf_set_flags2.c \
+				$(DIR_SRC)/pf_sometoa.c
 OBJ_PF		:= $(SRC_PF:.c=.o)
 
 DIR_LBFT	:= ./libft
@@ -13,11 +18,11 @@ LIBFT_A		:= $(DIR_LBFT)/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ_PF)
 	make -C $(DIR_LBFT)
 	ar rcs $(NAME) $(OBJ_PF) $(LIBFT_A)
 
-%.o: %.c
+$(DIR_SRC)/%.o: $(DIR_SRC)/%.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
