@@ -1,61 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_print.c                                         :+:    :+:            */
+/*   pf_arrlst.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/15 17:31:00 by kclaes        ########   odam.nl         */
+/*   Created: 2025/05/16 17:04:04 by kclaes        #+#    #+#                 */
+/*   Updated: 2025/05/16 17:36:14 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_helpers.h"
-#include "ft_printf.h"
 #include "libft.h"
 #include "ft_arrlst.h"
+#include "ft_printf.h"
 #include <stdlib.h>
 #include <stdarg.h>
-#include <stddef.h>
-#include <unistd.h>
 
 static char	*ft_arrlst_add_arg_get_str(va_list ap, t_flags *flags);
-
-int	ft_printf(char *s, ...)
-{
-	int			error;
-	t_flags		flags;
-	va_list		ap;
-	t_arrlst	*arrlst;
-
-	arrlst = ft_arrlst_create(10, 0);
-	if (!arrlst)
-		return (NULL);
-	va_start(ap, s);
-	ft_printf_helpr(s, arrlst, error, flags, ap);
-	va_end(ap);
-}
-
-int	ft_printf_helpr(char *s, t_arrlst *arrlst, int error, \
-					t_flags flags, va_list ap)
-{
-	while (*s)
-	{
-		if (*s == '%')
-		{
-			ft_reset_flags(&flags);
-			s = ft_get_flags(s, &flags, &error);
-			ft_arrlst_add_arg(&arrlst, ap, &flags);
-		}
-		else
-		{
-			s_end = ft_find_s_end(s);
-			len = s_end - s;
-			ft_printn(s, len);
-			s = s_end;
-		}
-	}
-}
+static int	ft_extract_arrlst_strs_len(t_arrlst *arrlst);
 
 t_arrlst *ft_arrlst_add_arg(t_arrlst **arrlst, va_list ap, t_flags *flags)
 {
@@ -94,7 +56,7 @@ static char	*ft_arrlst_add_arg_get_str(va_list ap, t_flags *flags)
 
 // get's the next % or '\0' if not found
 // and mallocs the str into arrlst
-char	*ft_arrlst_append_str(t_arrlst **lst, char *s)
+char	*ft_arrlst_append_str(t_arrlst **arrlst, char *s)
 {
 	char		*s_end;
 	size_t		s_len;
@@ -102,8 +64,52 @@ char	*ft_arrlst_append_str(t_arrlst **lst, char *s)
 	s_end = ft_strchr(s, '%');
 	if (s_end == NULL)
 		return (ft_strchr(s, '\0'));
-	if (*(s_end + 1) == '%')
-		s_end += 2;
 	s_len = s_end - s;
+	if (!ft_arrlst_append(arrlst, ft_str_mallocpy(s, s_len), free))
+		return (NULL);
 	return (s_end);
+}
+
+// returns parameter len: the length of the new malloced string
+// returns char	*: string from all arrlst content entries
+char	*ft_extract_arrlst(t_arrlst	*arrlst, int *len)
+{
+	size_t	i;
+	size_t	j;
+	char	*s_curr;
+	char	*s_ret;
+
+	*len = ft_extract_arrlst_strs_len(arrlst);
+	s_ret = malloc(len);
+	s_curr = ft_arrlst_get_i(arrlst, 0);
+	i = 1;
+	j = 0;
+	while (s_curr)
+	{
+		s_curr = ft_arrlst_get_i(arrlst, i);
+		while (*s_curr)
+			s_ret[j++] = *s_curr++;
+		i++;
+	}
+	s_ret[j] = '\0';
+	return (s_ret);
+}
+
+static int	ft_extract_arrlst_strs_len(t_arrlst *arrlst)
+{
+	size_t	i;
+	int		len;
+	char	*s_curr;
+	char	*s_ret;
+
+	s_curr = ft_arrlst_get_i(arrlst, 0);
+	i = 1;
+	len = 0;
+	while (s_curr)
+	{
+		len += ft_strlen(s_curr);
+		s_curr = ft_arrlst_get_i(arrlst, i);
+		i++;
+	}
+	return (len);
 }
