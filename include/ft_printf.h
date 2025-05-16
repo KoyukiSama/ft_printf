@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:09:39 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 18:55:23 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 19:32:44 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ typedef struct s_flags
 	bool	nbr_neg;
 	char	type;
 }	t_flags;
+
+int	ft_printf(char *s, ...);
 
 #endif

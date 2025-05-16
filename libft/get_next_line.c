@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/02 14:36:52 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/08 15:54:34 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 18:56:26 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_stash_fill(int fd, t_stash *stash)
 
 	buff = malloc(BUFF_SIZE + 1);
 	if (!buff)
-		return (free(buff), ft_clean_exit(stash));
+		return (ft_clean_exit(stash));
 	while (ft_needs_fill(stash))
 	{
 		if (!ft_buff_read(buff, fd))

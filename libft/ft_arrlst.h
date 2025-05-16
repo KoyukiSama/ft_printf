@@ -6,14 +6,14 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/12 00:25:41 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 18:53:30 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 18:57:22 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ARRLST_H
 # define FT_ARRLST_H
 
-#include <stddef.h>
+# include <stddef.h>
 
 typedef struct s_arrlst
 {

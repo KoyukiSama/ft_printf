@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_sometoa.c                                       :+:    :+:            */
+/*   pf_sometoa.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:40:21 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/13 18:47:01 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 19:12:31 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "libft.h"
 #include "ft_printf.h"
+#include "printf_helpers.h"
 #include <stdlib.h>
 #include <stdint.h>
 
@@ -54,12 +55,12 @@ char	*ft_strtoa(char *str)
 
 	if (str == NULL)
 	{
-		new_str = strdup("(null)");
+		new_str = ft_strdup("(null)");
 		if (!new_str)
 			return (NULL);
 		return (new_str);
 	}
-	new_str = strdup(str);
+	new_str = ft_strdup(str);
 	if (!new_str)
 		return (NULL);
 	return (new_str);
@@ -72,7 +73,7 @@ char	*ft_ptoa(void *p)
 
 	if (p == NULL)
 	{
-		str = strdup("(nil)");
+		str = ft_strdup("(nil)");
 		if (!str)
 			return (NULL);
 		return (str);

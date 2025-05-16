@@ -6,13 +6,14 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/16 17:04:04 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 18:03:45 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/16 19:10:04 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_arrlst.h"
 #include "ft_printf.h"
+#include "printf_helpers.h"
 #include <stdlib.h>
 #include <stdarg.h>
 
@@ -36,20 +37,20 @@ static char	*ft_arrlst_add_arg_get_str(va_list ap, t_flags *flags)
 	char	*str;
 
 	if (flags->type == 'c')
-		str = ft_ctostr(va_arg(ap, char));
+		str = ft_ctoa(va_arg(ap, int));
 	if (flags->type == 's')
 		str = ft_strtoa(va_arg(ap, char *));
 	if (flags->type == 'p')
 		str = ft_ptoa(va_arg(ap, void *));
 	if (flags->type == 'i')
-		str = ft_itoa_base_signed(va_arg(ap, char *), "0123456789", \
-									(flags->nbr_neg));
+		str = ft_itoa_base_signed(va_arg(ap, int), "0123456789", \
+									&(flags->nbr_neg));
 	if (flags->type == 'u')
-		str = ft_itoa_base_unsigned(va_arg(ap, char *), "0123456789");
+		str = ft_itoa_base_unsigned(va_arg(ap, int), "0123456789");
 	if (flags->type == 'x')
-		str = ft_itoa_base_unsigned(va_arg(ap, char *), "0123456789abcdef");
+		str = ft_itoa_base_unsigned(va_arg(ap, int), "0123456789abcdef");
 	if (flags->type == 'X')
-		str = ft_itoa_base_unsigned(va_arg(ap, char *), "0123456789ABCDEF");
+		str = ft_itoa_base_unsigned(va_arg(ap, int), "0123456789ABCDEF");
 	if (flags->type == '%')
 		str = ft_strdup("%");
 	return (str);
@@ -81,7 +82,7 @@ char	*ft_extract_arrlst(t_arrlst	*arrlst, int *len)
 	char	*s_ret;
 
 	*len = ft_extract_arrlst_strs_len(arrlst);
-	s_ret = malloc(len);
+	s_ret = malloc(*len);
 	s_curr = ft_arrlst_get_i(arrlst, 0);
 	i = 1;
 	j = 0;
@@ -101,7 +102,6 @@ static int	ft_extract_arrlst_strs_len(t_arrlst *arrlst)
 	size_t	i;
 	int		len;
 	char	*s_curr;
-	char	*s_ret;
 
 	s_curr = ft_arrlst_get_i(arrlst, 0);
 	i = 1;
