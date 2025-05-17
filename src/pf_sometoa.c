@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:40:21 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 19:12:31 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/18 00:40:43 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@
 
 char	*ft_itoa_base_signed(int val, const char *base, bool *sign)
 {
-	uintptr_t	uval;
+	unsigned int	uval;
 
 	if (val < 0)
 	{
-		uval = ((uintptr_t) -(val + 1)) + 1;
+		uval = ((unsigned int) -(val + 1)) + 1;
 		*sign = true;
 	}
 	else
-		uval = (uintptr_t) val;
+		uval = (unsigned int) val;
 	return (ft_itoa_base_unsigned(uval, base));
 }
 
-char	*ft_itoa_base_unsigned(uintptr_t val, const char *base)
+char	*ft_itoa_base_unsigned(unsigned int val, const char *base)
 {
 	char	buffer[35];
 	char	*str;
@@ -64,28 +64,6 @@ char	*ft_strtoa(char *str)
 	if (!new_str)
 		return (NULL);
 	return (new_str);
-}
-
-char	*ft_ptoa(void *p)
-{
-	char	*str;
-	char	*str_0x;
-
-	if (p == NULL)
-	{
-		str = ft_strdup("(nil)");
-		if (!str)
-			return (NULL);
-		return (str);
-	}
-	str = ft_itoa_base_unsigned((uintptr_t) p, "0123456789abcdef");
-	if (!str)
-		return (NULL);
-	str_0x = ft_strjoin("0x", str);
-	free(str);
-	if (!str_0x)
-		return (NULL);
-	return (str_0x);
 }
 
 char	*ft_ctoa(char c)

@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/17 15:33:02 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/17 23:54:03 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,8 @@ int	ft_printf(char *s, ...)
 	return (ft_printf_write(arrlst));
 }
 
-#include <stdio.h>
 static int	ft_printf_store_strs(char *s, t_arrlst *arrlst, int error, \
-						va_list ap)
+									va_list ap)
 {
 	t_flags	flags;
 

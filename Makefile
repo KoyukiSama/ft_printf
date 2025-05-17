@@ -12,7 +12,8 @@ SRC_PF		:= ft_print.c \
 				pf_bonus_conversion.c \
 				pf_set_flags.c \
 				pf_set_flags2.c \
-				pf_sometoa.c
+				pf_sometoa.c \
+				pf_sometoa2.c
 
 SRC_LBFT	:= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 				ft_isprint.c ft_toupper.c ft_tolower.c ft_toint.c \

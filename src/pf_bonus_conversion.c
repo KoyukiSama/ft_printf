@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 12:08:40 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/17 19:56:51 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/18 00:12:38 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 
 static char	*ft_justify_malloc(t_flags flags, char *str);
 static char	*ft_zeros_malloc(t_flags flags, char *str);
-static void ft_perc_str(char *str, t_flags flags);
+static void	ft_perc_str(char *str, t_flags flags);
+static int	ft_calculate_zero_s_length(t_flags flags, char *str);
 
 t_arrlst	*ft_arrlst_append_flag_strs(t_arrlst **arrlst, \
 										t_flags flags, char *str)
@@ -48,7 +49,6 @@ t_arrlst	*ft_arrlst_append_flag_strs(t_arrlst **arrlst, \
 	return (*arrlst);
 }
 
-#include <stdio.h>
 // calculates how much justify 
 static char	*ft_justify_malloc(t_flags flags, char *str)
 {
@@ -56,12 +56,15 @@ static char	*ft_justify_malloc(t_flags flags, char *str)
 	char	*justify;
 	int		i;
 
-	fprintf(stderr, "int: %i", flags.perc_zero);
 	if (flags.left_justf)
 		justify_length = flags.left_justf - ft_strlen(str) - flags.nbr_neg;
 	else
-		justify_length = flags.right_justf - ft_strlen(str) - flags.nbr_neg \
-							+ flags.perc_zero;
+		justify_length = flags.right_justf - ft_strlen(str) - flags.nbr_neg;
+	if (flags.type == 's' && flags.right_justf && flags.perc_zero)
+		justify_length += ft_strlen(str) - flags.zeros_width;
+	else if (flags.perc_zero)
+		justify_length -= ft_calculate_zero_s_length(flags, str) \
+						- flags.nbr_neg;
 	if (justify_length <= 0)
 		return (NULL);
 	justify = malloc(justify_length + 1);
@@ -74,6 +77,14 @@ static char	*ft_justify_malloc(t_flags flags, char *str)
 	return (justify);
 }
 
+static int	ft_calculate_zero_s_length(t_flags flags, char *str)
+{
+	if (flags.perc_zero == '.')
+		return (flags.zeros_width - ft_strlen(str) + flags.nbr_neg);
+	else
+		return (flags.zeros_width - ft_strlen(str));
+}
+
 static char	*ft_zeros_malloc(t_flags flags, char *str)
 {
 	int		zero_s_length;
@@ -82,10 +93,7 @@ static char	*ft_zeros_malloc(t_flags flags, char *str)
 
 	if (flags.type == 's')
 		return (ft_perc_str(str, flags), ft_strdup(""));
-	if (flags.perc_zero == '.')
-		zero_s_length = flags.zeros_width - ft_strlen(str) + flags.nbr_neg;
-	else
-		zero_s_length = flags.zeros_width - ft_strlen(str);
+	zero_s_length = ft_calculate_zero_s_length(flags, str);
 	zero_s = malloc(zero_s_length + 1);
 	if (!zero_s)
 		return (NULL);
