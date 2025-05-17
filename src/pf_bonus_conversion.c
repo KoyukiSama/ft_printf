@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 12:08:40 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 19:11:05 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/17 16:14:48 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char	*ft_justify_malloc(t_flags flags, char *str)
 
 	if (flags.left_justf)
 		justify_length = flags.left_justf - ft_strlen(str) - flags.nbr_neg;
-	else if (flags.right_justf)
+	else
 		justify_length = flags.right_justf - ft_strlen(str) - flags.nbr_neg;
 	if (justify_length <= 0)
 		return (NULL);
@@ -77,7 +77,7 @@ static char	*ft_zeros_malloc(t_flags flags, char *str)
 
 	if (flags.perc_zero == '.')
 		zero_s_length = flags.zeros_width - ft_strlen(str) + flags.nbr_neg;
-	else if (flags.perc_zero == '0')
+	else
 		zero_s_length = flags.zeros_width - ft_strlen(str);
 	zero_s = malloc(zero_s_length + 1);
 	if (!zero_s)

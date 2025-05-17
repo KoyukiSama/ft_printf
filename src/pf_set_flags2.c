@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/10 18:07:00 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 18:09:55 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/17 16:19:01 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,30 @@ int	ft_is_typelist(char c)
 	return (0);
 }
 
+int	ft_error_type_wrong_flag(t_flags flags, int *error)
+{
+	if ((flags.type == 'c' || flags.type == 'p'
+			|| flags.type == '%') && flags.perc_zero == '.')
+		return (*error = 1, 1);
+	if ((flags.type == 'c' || flags.type == 'p'
+			|| flags.type == '%' || flags.type == 's')
+		&& flags.perc_zero == '0')
+		return (*error = 1, 1);
+	return (0);
+}
+
 char	*ft_last_error_check(char c, int *error)
 {
 	if (c == '-')
 	{
 		*error = 1;
 		return (ft_strdup(RED"~[FLAGS ERROR]: \"%-\", "\
-					"can not use - flag after width "RESET));
+					"can not use - flag after width~\n"RESET));
 	}
 	else
 	{
 		*error = 1;
 		return (ft_strdup(RED"~[TYPE ERROR or UNKNOWN FLAG]:"\
-				" type or flag not supported by ft_printf~"RESET));
+				" type or flag not supported by ft_printf~\n"RESET));
 	}
 }

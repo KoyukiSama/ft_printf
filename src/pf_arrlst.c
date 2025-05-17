@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/16 17:04:04 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/17 00:51:18 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/17 16:14:14 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*ft_arrlst_append_str(t_arrlst **arrlst, char *s)
 char	*ft_extract_arrlst(t_arrlst	*arrlst, int *len)
 {
 	size_t	i;
-	size_t	j;
+	int		j;
 	char	*s_curr;
 	char	*s_ret;
 
@@ -87,7 +87,7 @@ char	*ft_extract_arrlst(t_arrlst	*arrlst, int *len)
 		return (ft_arrlst_free(&arrlst, free), NULL);
 	i = 0;
 	j = 0;
-	while (j < (size_t)*len)
+	while (j < *len)
 	{
 		s_curr = ft_arrlst_get_i(arrlst, i);
 		while (*s_curr)

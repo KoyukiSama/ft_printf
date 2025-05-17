@@ -10,6 +10,7 @@ int main(void)
 	printf("3c -> |%3c|\n", 'c');  // RIGHT  3c
 	printf("-3c -> |%-3c|\n", 'c'); // RIGHT -3c
 	printf("-3c -> |%-3c|\n\n", '\0'); // 
+	printf("05c -> |%.5c|", 'c');
 	
 	char *hi = NULL;
 	// strings: precision truncates, zero‐flag is ignored  
@@ -35,7 +36,7 @@ int main(void)
 
 	char hello[] = "hi";
 	// %p
-	printf("p -> %p\n", hello);
+	printf("p -> %.5p\n", hello);
 	printf("p -> %p\n", NULL);
 	//printf("%05p", hello); // 0 flag %p WRONG
 	//printf("%.5p", hello); // . flag %p WRONG

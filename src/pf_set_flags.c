@@ -6,13 +6,14 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/10 18:07:00 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/17 00:47:42 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/17 16:18:44 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
+char		*ft_error_type_wrong_flag(t_flags flags, int *error);
 char		*ft_last_error_check(char c, int *error);
 int			ft_is_typelist(char c);
 static char	*ft_set_type(char c, t_flags *flags, int *error);
@@ -54,13 +55,13 @@ static char	*ft_set_left_justf(char **s, t_flags *flags, int *error)
 		*error = 1;
 		return (ft_strdup(RED"~[FLAGS ERROR]: \"%-\", "\
 							"- flag can not be used together with "\
-							"'0'~"RESET));
+							"'0'~\n"RESET));
 	}
 	if (!ft_isdigit(**s))
 	{
 		*error = 1;
 		return (ft_strdup(RED"~[FLAGS ERROR]: \"%-\", "\
-							"no number specified~"RESET));
+							"no number specified~\n"RESET));
 	}
 	flags->left_justf = ft_atoi(*s);
 	while (ft_isdigit(**s))
@@ -75,7 +76,7 @@ static char	*ft_set_perc(char **s, t_flags *flags, int *error)
 	{
 		*error = 1;
 		return (ft_strdup(RED"~[FLAGS ERROR]: \"%.\", "\
-							"no number specified~"RESET));
+							"no number specified~\n"RESET));
 	}
 	flags->perc_zero = '.';
 	flags->zeros_width = ft_atoi(*s);
@@ -94,13 +95,13 @@ static char	*ft_set_zero(char **s, t_flags *flags, int *error)
 		*error = 1;
 		return (ft_strdup(RED"~[FLAGS ERROR]: \"%0\", "\
 							"0 flag can not be used together with "\
-							"'-' or '.'~"RESET));
+							"'-' or '.'~\n"RESET));
 	}
 	if (!ft_isdigit(**s))
 	{
 		*error = 1;
 		return (ft_strdup(RED"~[FLAGS ERROR]: \"%0\", "\
-							"no number specified~"RESET));
+							"no number specified~\n"RESET));
 	}
 	flags->perc_zero = '0';
 	flags->zeros_width = ft_atoi(*s);
@@ -129,9 +130,8 @@ static char	*ft_set_type(char c, t_flags *flags, int *error)
 		flags->type = '%';
 	else
 		return (ft_last_error_check(c, error));
-	if (flags->type == 'c' || flags->type == 'p'
-		|| ((flags->type == 's') && flags->perc_zero == '0'))
-		flags->perc_zero = 0;
+	if (ft_error_type_wrong_flag(*flags, error))
+		return (ft_strdup(RED"[FLAG ERROR] . or 0 with wrong type\n"RESET));
 	if (flags->type == 'x' || flags->type == 'X' || flags->type == 'u')
 		flags->nbr_neg = 0;
 	return (NULL);
