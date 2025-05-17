@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 12:08:40 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/17 16:14:48 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/17 19:56:51 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 static char	*ft_justify_malloc(t_flags flags, char *str);
 static char	*ft_zeros_malloc(t_flags flags, char *str);
+static void ft_perc_str(char *str, t_flags flags);
 
 t_arrlst	*ft_arrlst_append_flag_strs(t_arrlst **arrlst, \
 										t_flags flags, char *str)
@@ -47,6 +48,7 @@ t_arrlst	*ft_arrlst_append_flag_strs(t_arrlst **arrlst, \
 	return (*arrlst);
 }
 
+#include <stdio.h>
 // calculates how much justify 
 static char	*ft_justify_malloc(t_flags flags, char *str)
 {
@@ -54,10 +56,12 @@ static char	*ft_justify_malloc(t_flags flags, char *str)
 	char	*justify;
 	int		i;
 
+	fprintf(stderr, "int: %i", flags.perc_zero);
 	if (flags.left_justf)
 		justify_length = flags.left_justf - ft_strlen(str) - flags.nbr_neg;
 	else
-		justify_length = flags.right_justf - ft_strlen(str) - flags.nbr_neg;
+		justify_length = flags.right_justf - ft_strlen(str) - flags.nbr_neg \
+							+ flags.perc_zero;
 	if (justify_length <= 0)
 		return (NULL);
 	justify = malloc(justify_length + 1);
@@ -66,6 +70,7 @@ static char	*ft_justify_malloc(t_flags flags, char *str)
 	i = 0;
 	while (i < justify_length)
 		justify[i++] = ' ';
+	justify[i] = '\0';
 	return (justify);
 }
 
@@ -75,6 +80,8 @@ static char	*ft_zeros_malloc(t_flags flags, char *str)
 	char	*zero_s;
 	int		i;
 
+	if (flags.type == 's')
+		return (ft_perc_str(str, flags), ft_strdup(""));
 	if (flags.perc_zero == '.')
 		zero_s_length = flags.zeros_width - ft_strlen(str) + flags.nbr_neg;
 	else
@@ -88,5 +95,17 @@ static char	*ft_zeros_malloc(t_flags flags, char *str)
 	zero_s[i] = '\0';
 	if (flags.nbr_neg == true)
 		zero_s[0] = '-';
+	zero_s[i] = '\0';
 	return (zero_s);
+}
+
+static void	ft_perc_str(char *str, t_flags flags)
+{
+	size_t	len;
+	size_t	perc;
+
+	len = ft_strlen(str);
+	perc = (size_t) flags.zeros_width;
+	if (perc < len)
+		str[perc] = '\0';
 }
