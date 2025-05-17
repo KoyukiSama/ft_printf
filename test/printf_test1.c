@@ -58,17 +58,45 @@ int main(void)
 	// ft_printf("|%-15p|\n", pihello);
 	// //printf("|%-15p|\n", pihello);
 	
-	ft_printf(PPL"<3-----[TESTS 5]: %%u-----<3\n"RESET);
-	ft_printf("|%u|\n", 400);
-	ft_printf("|%05u|\n", 400);
-	ft_printf("|%.5u|\n", 400);
-	ft_printf("|%5u|\n", 400);
-	ft_printf("|%-5u|\n", 400);
-	ft_printf("|%u|\n", -400);
-	ft_printf("|%05u|\n", -400);
-	ft_printf("|%.5u|\n", -400);
-	ft_printf("|%5u|\n", -400);
-	ft_printf("|%-5u|\n", -400);
-	printf("%u\n", -400);
-	printf("%50u\n", -500);
+	// ft_printf(PPL"<3-----[TESTS 5]: %%u-----<3\n"RESET);
+	// ft_printf("|%u|\n", 400);
+	// ft_printf("|%05u|\n", 400);
+	// ft_printf("|%.5u|\n", 400);
+	// ft_printf("|%5u|\n", 400);
+	// ft_printf("|%-5u|\n", 400);
+	// ft_printf("|%u|\n", -400);
+	// ft_printf("|%015u|\n", -400);
+	// ft_printf("|%.15u|\n", -400);
+	// ft_printf("|%15u|\n", -400);
+	// ft_printf("|%-15u|\n", -400);
+	// ft_printf("|%12.11u|\n", -400);
+	// ft_printf("|%-12.11u|\n", -400);
+	
+	// ft_printf(PPL"<3-----[TESTS 6]: %%x-----<3\n"RESET);
+	// ft_printf("|%x|\n", 255);
+	// ft_printf("|%05x|\n", 255);
+	// ft_printf("|%.5x|\n", 255);
+	// ft_printf("|%5x|\n", 255);
+	// ft_printf("|%-5x|\n", 255);
+	// ft_printf("|%x|\n", -255);
+	// ft_printf("|%015x|\n", -255);
+	// ft_printf("|%.15x|\n", -255);
+	// ft_printf("|%15x|\n", -255);
+	// ft_printf("|%-15x|\n", -255);
+	// ft_printf("|%12.11x|\n", -255);
+	// ft_printf("|%-12.11x|\n", -255);
+
+	// ft_printf(PPL"<3-----[TESTS 7]: %%X-----<3\n"RESET);
+	// ft_printf("|%X|\n", 255);
+	// ft_printf("|%05X|\n", 255);
+	// ft_printf("|%.5X|\n", 255);
+	// ft_printf("|%5X|\n", 255);
+	// ft_printf("|%-5X|\n", 255);
+	// ft_printf("|%X|\n", -255);
+	// ft_printf("|%015X|\n", -255);
+	// ft_printf("|%.15X|\n", -255);
+	// ft_printf("|%15X|\n", -255);
+	// ft_printf("|%-15X|\n", -255);
+	// ft_printf("|%12.11X|\n", -255);
+	// ft_printf("|%-12.11X|\n", -255);
 }

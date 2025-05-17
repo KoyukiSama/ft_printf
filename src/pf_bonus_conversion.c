@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 12:08:40 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/18 00:12:38 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/18 01:38:08 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,12 @@ static char	*ft_zeros_malloc(t_flags flags, char *str)
 	int		zero_s_length;
 	char	*zero_s;
 	int		i;
-
+	
 	if (flags.type == 's')
 		return (ft_perc_str(str, flags), ft_strdup(""));
 	zero_s_length = ft_calculate_zero_s_length(flags, str);
+	if (zero_s_length <= 0)
+		return (ft_strdup(""));
 	zero_s = malloc(zero_s_length + 1);
 	if (!zero_s)
 		return (NULL);
