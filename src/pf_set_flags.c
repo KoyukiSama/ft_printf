@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/10 18:07:00 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/18 15:52:21 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/18 16:07:07 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static char	*ft_set_left_justf(char **s, t_flags *flags, int *error)
 	}
 	if (!ft_isdigit(**s))
 		flags->left_justf = 0;
-	else {
+	else
+	{
 		flags->left_justf = ft_atoi(*s);
 		while (ft_isdigit(**s))
 			(*s)++;
