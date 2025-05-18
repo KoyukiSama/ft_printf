@@ -38,6 +38,8 @@ OBJ			:= $(OBJ_PF) $(OBJ_LBFT) $(OBJ_ARRLST)
 
 all: $(NAME)
 
+bonus: $(NAME)
+
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
@@ -61,4 +63,4 @@ test:
 	@$(MAKE) fclean
 	@./a.out
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re test bonus
