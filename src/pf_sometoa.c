@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:40:21 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/18 13:54:26 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/18 17:59:29 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ft_strtoa(char *str, t_flags flags)
 {
 	if (str == NULL)
 	{
-		if (flags.zeros_width < ((int) ft_strlen("(null)")))
+		if (flags.perc_zero = '.' && flags.zeros_width < ((int) ft_strlen("(null)")))
 			return (ft_strdup(""));
 		return (ft_strdup("(null)"));
 	}
