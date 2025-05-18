@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/18 13:41:46 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/18 18:52:39 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	ft_printf(char *s, ...)
 	va_list		ap;
 	t_arrlst	*arrlst;
 
+	if (!s)
+		return (-1);
 	error = 0;
 	arrlst = ft_arrlst_create(10, 0);
 	if (!arrlst)
