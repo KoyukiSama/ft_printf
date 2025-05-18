@@ -15,7 +15,7 @@ int main(void)
 	char *hi = NULL;
 	// strings: precision truncates, zero‐flag is ignored  
 	printf(".3s -> |%5.3s|\n", "hello"); // |hel|  
-	printf(" 3s -> |%3s|\n", "hi");      // |  hi|   zero‐flag doesn’t pad strings, so spaces
+	printf(" -s -> |%-s|\n", "");      // |  hi|   zero‐flag doesn’t pad strings, so spaces
 	printf("-3s -> |%-3s|\n", "hi");      
 	printf("-3s -> |%3s|\n", "\0");      
 	printf("-3s -> |%3s|\n\n", hi);      
