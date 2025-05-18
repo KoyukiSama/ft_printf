@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/18 18:52:39 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/18 18:56:51 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ int	ft_printf(char *s, ...)
 	if (!ft_printf_store_strs(s, arrlst, error, ap))
 		return (va_end(ap), -1);
 	va_end(ap);
+	#include <stdio.h>
+	int len = ft_arrlst_get_len(arrlst);
+	for (int i = 0; i < len; i++)
+		fprintf(stderr, "[%s]\n", ft_arrlst_get_i(arrlst, i));
 	return (ft_printf_write(arrlst));
 }
 
