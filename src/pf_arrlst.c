@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/16 17:04:04 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/18 00:35:34 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/18 13:50:23 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*ft_arrlst_add_arg_get_str(va_list ap, t_flags *flags)
 	if (flags->type == 'c')
 		str = ft_ctoa(va_arg(ap, int));
 	if (flags->type == 's')
-		str = ft_strtoa(va_arg(ap, char *));
+		str = ft_strtoa(va_arg(ap, char *), *flags);
 	if (flags->type == 'p')
 		str = ft_ptoa(va_arg(ap, void *));
 	if (flags->type == 'i')

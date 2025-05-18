@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:40:21 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/18 00:40:43 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/18 13:54:26 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,15 @@ char	*ft_itoa_base_unsigned(unsigned int val, const char *base)
 	return (ft_strdup(str));
 }
 
-char	*ft_strtoa(char *str)
+char	*ft_strtoa(char *str, t_flags flags)
 {
-	char	*new_str;
-
 	if (str == NULL)
 	{
-		new_str = ft_strdup("(null)");
-		if (!new_str)
-			return (NULL);
-		return (new_str);
+		if (flags.zeros_width < ((int) ft_strlen("(null)")))
+			return (ft_strdup(""));
+		return (ft_strdup("(null)"));
 	}
-	new_str = ft_strdup(str);
-	if (!new_str)
-		return (NULL);
-	return (new_str);
+	return (ft_strdup(str));
 }
 
 char	*ft_ctoa(char c)

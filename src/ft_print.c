@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/17 23:54:03 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/18 13:41:46 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int	ft_printf_write(t_arrlst *arrlst)
 	if (!s_write)
 		return (ft_arrlst_free(&arrlst, free), -1);
 	ft_arrlst_free(&arrlst, free);
-	write(1, s_write, len);
+	len = write(1, s_write, len);
 	free(s_write);
 	return (len);
 }

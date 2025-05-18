@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/11 17:32:11 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/18 00:39:51 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/18 13:50:04 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 // (pf_sometoa.c)
 char		*ft_itoa_base_signed(int val, const char *base, bool *sign);
 char		*ft_itoa_base_unsigned(unsigned int val, const char *base);
-char		*ft_strtoa(char *str);
+char		*ft_strtoa(char *str, t_flags flags);
 char		*ft_ptoa(void *p);
 char		*ft_ctoa(char c);
 
