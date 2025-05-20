@@ -1,22 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstiter_bonus.c                                 :+:    :+:            */
+/*   ft_lst_get.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 22:42:26 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/08 16:13:18 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/20 16:19:20 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_lst.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+t_node	*ft_lst_get(t_list *lst, size_t i)
 {
-	while (lst)
+	size_t	j;
+	t_node	*curr;
+
+	if (!lst)
+		return (NULL);
+	if (i == 0)
+		return (ft_lst_getfirst(lst));
+	if (i >= lst->size)
+		return (ft_lst_getlast(lst));
+	j = 0;
+	curr = lst->first;
+	while (j < i)
 	{
-		f(lst->content);
-		lst = lst->next;
+		curr = curr->next;
+		j++;
 	}
+	return (curr);
+}
+
+t_node	*ft_lst_getlast(t_list *lst)
+{
+	return (lst->last);
+}
+
+t_node	*ft_lst_getfirst(t_list *lst)
+{
+	return (lst->first);
+}
+
+size_t	ft_lst_getsize(t_list *lst)
+{
+	return (lst->size);
 }

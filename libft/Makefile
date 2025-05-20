@@ -15,9 +15,8 @@ SRC_LBFT	:= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 				ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 				ft_putnbr_fd.c
 
-SRC_LKDLST	:= ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
-				ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
-				ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
+SRC_LKDLST	:= ft_lst_add.c ft_lst_del.c ft_lst_manage.c \
+				ft_lst_get.c ft_lst_getcont.c
 
 SRC_GNL		:= get_next_line_utils.c get_next_line.c
 
@@ -29,7 +28,7 @@ OBJ_LKDLST 	:= $(SRC_LKDLST:.c=.o)
 OBJ_GNL		:= $(SRC_GNL:.c=.o)
 OBJ_ARRLST	:= $(SRC_ARRLST:.c=.o)
 
-OBJ := $(OBJ_LBFT) $(OBJ_ARRLST)
+OBJ := $(OBJ_LBFT) $(OBJ_LKDLST)
 
 all: $(NAME)
 
