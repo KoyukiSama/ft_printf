@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 12:08:40 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/20 18:53:14 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/20 19:05:34 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@ t_list	*ft_lst_append_flag_strs(t_list **lst, t_flags flags, char *str)
 {
 	if (flags.right_justf)
 	{
-		if (!ft_lst_append(lst, ft_justify_malloc(flags, str), free))
+		if (!ft_lst_append(lst, ft_justify_malloc(flags, str)))
 			return (free(str), NULL);
 	}
 	if (flags.perc_zero)
 	{
-		if (!ft_lst_append(lst, ft_zeros_malloc(flags, str), free))
+		if (!ft_lst_append(lst, ft_zeros_malloc(flags, str)))
 			return (free(str), NULL);
 	}
 	else if (flags.nbr_neg)
 	{
-		if (!ft_lst_append(lst, ft_strdup("-"), free))
+		if (!ft_lst_append(lst, ft_strdup("-")))
 			return (free(str), NULL);
 	}
-	if (!ft_lst_append(lst, str, free))
+	if (!ft_lst_append(lst, str))
 		return (NULL);
 	if (flags.left_justf)
 	{

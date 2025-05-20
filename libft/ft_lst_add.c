@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 22:42:26 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/20 17:25:33 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/20 19:08:58 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_lst_append(t_list *lst, void *content)
 {
 	t_node	*new;
 
-	if (!lst)
+	if (!lst || !content)
 		return (NULL);
 	new = ft_lst_newnode(content);
 	if (!new)
@@ -39,7 +39,7 @@ void	*ft_lst_prepend(t_list *lst, void *content)
 {
 	t_node	*new;
 
-	if (!lst)
+	if (!lst || !content)
 		return (NULL);
 	new = ft_lst_newnode(content);
 	if (!new)
@@ -64,7 +64,7 @@ void	*ft_lst_insert(t_list *lst, void *content, size_t i)
 	t_node	*curr;
 	size_t	j;
 
-	if (!lst)
+	if (!lst || !content)
 		return (NULL);
 	if (lst->size == 0 || i >= lst->size)
 		return (ft_lst_append(lst, content));
@@ -84,7 +84,7 @@ void	*ft_lst_set(t_list *lst, void *content, size_t i, void (*del)(void *))
 {
 	t_node	*curr;
 
-	if (!lst)
+	if (!lst || !content)
 		return (NULL);
 	curr = ft_lst_get(lst, i);
 	if (curr->content)

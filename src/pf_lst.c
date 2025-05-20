@@ -17,14 +17,14 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-static char	*ft_lst_add_arg_get_str(va_list ap, t_flags *flags);
+static char	*ft_va_to_str(va_list ap, t_flags *flags);
 static int	ft_extract_list_strs_len(t_list *lst);
 
 t_list	*ft_lst_add_arg(t_list **lst, va_list ap, t_flags *flags)
 {
 	char	*str;
 
-	str = ft_lst_add_arg_get_str(ap, flags);
+	str = ft_va_to_str(ap, flags);
 	if (!str)
 		return (ft_lst_free(lst, free), NULL);
 	if (!ft_lst_append_flag_strs(lst, *flags, str))
@@ -32,7 +32,7 @@ t_list	*ft_lst_add_arg(t_list **lst, va_list ap, t_flags *flags)
 	return (*lst);
 }
 
-static char	*ft_lst_add_arg_get_str(va_list ap, t_flags *flags)
+static char	*ft_va_to_str(va_list ap, t_flags *flags)
 {
 	char	*str;
 
@@ -58,16 +58,20 @@ static char	*ft_lst_add_arg_get_str(va_list ap, t_flags *flags)
 
 // get's the next % or '\0' if not found
 // and mallocs the str intolst 
-char	*ft_lst_append_str(t_list **lst, char *s)
+char	*ft_lst_append_str(t_list *lst, char *s)
 {
 	char		*s_end;
 	size_t		s_len;
+	char		*str;
 
 	s_end = ft_strchr(s, '%');
 	if (s_end == NULL)
 		s_end = ft_strchr(s, '\0');
 	s_len = s_end - s;
-	if (!ft_lst_append(lst, ft_str_mallocpy(s, s_len), free))
+	str = ft_str_mallocpy(s, s_len);
+	if (!str)
+		return (NULL);
+	if (!ft_lst_append(lst, str))
 		return (NULL);
 	return (s_end);
 }
@@ -89,7 +93,7 @@ char	*ft_extract_list(t_list	*lst, int *len)
 	j = 0;
 	while (j < *len)
 	{
-		s_curr = ft_lst_get_i(lst, i);
+		s_curr = ft_lst_getc(lst, i);
 		while (*s_curr)
 			s_ret[j++] = *s_curr++;
 		i++;
@@ -104,13 +108,13 @@ static int	ft_extract_list_strs_len(t_list *lst)
 	int		len;
 	char	*s_curr;
 
-	s_curr = ft_lst_get_i(lst, 0);
+	s_curr = ft_lst_getc(lst, 0);
 	i = 1;
 	len = 0;
 	while (s_curr)
 	{
 		len += ft_strlen(s_curr);
-		s_curr = ft_lst_get_i(lst, i);
+		s_curr = ft_lst_getc(lst, i);
 		i++;
 	}
 	return (len);

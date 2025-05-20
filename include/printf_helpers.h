@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/11 17:32:11 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/20 18:56:39 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/20 19:03:22 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_list		*ft_lst_append_flag_strs(t_list **lst, t_flags flags, char *str);
 
 // (pf_lst.c)
 t_list		*ft_lst_add_arg(t_list **lst, va_list ap, t_flags *flags);
-char		*ft_lst_append_str(t_list **lst, char *s);
+char		*ft_lst_append_str(t_list *lst, char *s);
 char		*ft_extract_list(t_list	*lst, int *len);
 
 #endif
