@@ -6,11 +6,11 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 12:08:40 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/18 16:06:06 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/20 18:53:14 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_arrlst.h"
+#include "ft_lst.h"
 #include "ft_printf.h"
 #include "libft.h"
 #include <stdlib.h>
@@ -21,32 +21,31 @@ static char	*ft_zeros_malloc(t_flags flags, char *str);
 static void	ft_perc_str(char *str, t_flags flags);
 static int	ft_calculate_zero_s_length(t_flags flags, char *str);
 
-t_arrlst	*ft_arrlst_append_flag_strs(t_arrlst **arrlst, \
-										t_flags flags, char *str)
+t_list	*ft_lst_append_flag_strs(t_list **lst, t_flags flags, char *str)
 {
 	if (flags.right_justf)
 	{
-		if (!ft_arrlst_append(arrlst, ft_justify_malloc(flags, str), free))
+		if (!ft_lst_append(lst, ft_justify_malloc(flags, str), free))
 			return (free(str), NULL);
 	}
 	if (flags.perc_zero)
 	{
-		if (!ft_arrlst_append(arrlst, ft_zeros_malloc(flags, str), free))
+		if (!ft_lst_append(lst, ft_zeros_malloc(flags, str), free))
 			return (free(str), NULL);
 	}
 	else if (flags.nbr_neg)
 	{
-		if (!ft_arrlst_append(arrlst, ft_strdup("-"), free))
+		if (!ft_lst_append(lst, ft_strdup("-"), free))
 			return (free(str), NULL);
 	}
-	if (!ft_arrlst_append(arrlst, str, free))
+	if (!ft_lst_append(lst, str, free))
 		return (NULL);
 	if (flags.left_justf)
 	{
-		if (!ft_arrlst_append(arrlst, ft_justify_malloc(flags, str), free))
+		if (!ft_lst_append(lst, ft_justify_malloc(flags, str), free))
 			return (NULL);
 	}
-	return (*arrlst);
+	return (*lst);
 }
 
 // calculates how much justify 
