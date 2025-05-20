@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 12:08:40 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/20 19:10:33 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/20 19:17:26 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*ft_zeros_malloc(t_flags flags, char *str);
 static void	ft_perc_str(char *str, t_flags flags);
 static int	ft_calculate_zero_s_length(t_flags flags, char *str);
 
-t_list	*ft_lst_append_flag_strs(t_list **lst, t_flags flags, char *str)
+t_list	*ft_lst_append_flag_strs(t_list *lst, t_flags flags, char *str)
 {
 	if (flags.right_justf)
 	{
@@ -45,7 +45,7 @@ t_list	*ft_lst_append_flag_strs(t_list **lst, t_flags flags, char *str)
 		if (!ft_lst_append(lst, ft_justify_malloc(flags, str)))
 			return (NULL);
 	}
-	return (*lst);
+	return (lst);
 }
 
 // calculates how much justify 

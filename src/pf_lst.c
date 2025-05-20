@@ -20,7 +20,7 @@
 static char	*ft_va_to_str(va_list ap, t_flags *flags);
 static int	ft_extract_list_strs_len(t_list *lst);
 
-t_list	*ft_lst_add_arg(t_list **lst, va_list ap, t_flags *flags)
+t_list	*ft_lst_add_arg(t_list *lst, va_list ap, t_flags *flags)
 {
 	char	*str;
 
@@ -29,7 +29,7 @@ t_list	*ft_lst_add_arg(t_list **lst, va_list ap, t_flags *flags)
 		return (NULL);
 	if (!ft_lst_append_flag_strs(lst, *flags, str))
 		return (NULL);
-	return (*lst);
+	return (lst);
 }
 
 static char	*ft_va_to_str(va_list ap, t_flags *flags)
@@ -85,7 +85,7 @@ char	*ft_extract_list(t_list	*lst, int *len)
 	*len = ft_extract_list_strs_len(lst);
 	s_ret = malloc(*len + 1);
 	if (!s_ret)
-		return (ft_lst_free(&lst, free), NULL);
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (j < *len)

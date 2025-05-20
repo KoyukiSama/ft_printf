@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/20 19:12:04 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/20 19:23:28 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int	ft_printf(char *s, ...)
 		return (-1);
 	va_start(ap, s);
 	if (!ft_printf_store_strs(s, lst, error, ap))
-		return (ft_lst_free(lst, free), va_end(ap), -1);
+		return (ft_lst_free(&lst, free), va_end(ap), -1);
 	va_end(ap);
 	#include <stdio.h>
-	int len = ft_lst_get_len(lst);
+	int len = ft_lst_getsize(lst);
 	for (int i = 0; i < len; i++)
-		fprintf(stderr, "[%s]\n", ft_lst_get_i(lst, i));
+		fprintf(stderr, "[%s]\n", (char *)ft_lst_getc(lst, i));
 	return (ft_printf_write(lst));
 }
 
@@ -56,8 +56,7 @@ static int	ft_printf_store_strs(char *s, t_list *lst, int error, va_list ap)
 			ft_reset_flags(&flags);
 			s = ft_get_flags(s, &flags, &error);
 			if (error)
-				return (ft_putstr_fd(s, 1), ft_lst_free(&lst, free), \
-						free(s), 0);
+				return (ft_putstr_fd(s, 1), free(s), 0);
 			if (!ft_lst_add_arg(&lst, ap, &flags))
 				return (0);
 		}
@@ -77,9 +76,9 @@ static int	ft_printf_write(t_list *lst)
 	int		len;
 
 	s_write = ft_extract_list(lst, &len);
-	if (!s_write)
-		return (ft_lst_free(&lst, free), -1);
 	ft_lst_free(&lst, free);
+	if (!s_write)
+		return (-1);
 	len = write(1, s_write, len);
 	free(s_write);
 	return (len);
