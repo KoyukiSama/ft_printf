@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:09:39 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/16 19:32:44 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/20 18:48:49 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 # include <stdbool.h>
 
-# define HEX_UPP "0123456789ABCDEF"
-# define HEX_LOW "0123456789abcdef"
-# define DEC "0123456789"
 # define RED "\033[31m"
 # define RESET "\033[0m"
 
