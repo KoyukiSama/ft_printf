@@ -26,7 +26,7 @@ t_list	*ft_lst_add_arg(t_list **lst, va_list ap, t_flags *flags)
 
 	str = ft_va_to_str(ap, flags);
 	if (!str)
-		return (ft_lst_free(lst, free), NULL);
+		return (NULL);
 	if (!ft_lst_append_flag_strs(lst, *flags, str))
 		return (NULL);
 	return (*lst);
@@ -68,10 +68,7 @@ char	*ft_lst_append_str(t_list *lst, char *s)
 	if (s_end == NULL)
 		s_end = ft_strchr(s, '\0');
 	s_len = s_end - s;
-	str = ft_str_mallocpy(s, s_len);
-	if (!str)
-		return (NULL);
-	if (!ft_lst_append(lst, str))
+	if (!ft_lst_append(lst, ft_str_mallocpy(s, s_len)))
 		return (NULL);
 	return (s_end);
 }

@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/20 18:54:52 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/20 19:12:04 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_printf(char *s, ...)
 		return (-1);
 	va_start(ap, s);
 	if (!ft_printf_store_strs(s, lst, error, ap))
-		return (va_end(ap), -1);
+		return (ft_lst_free(lst, free), va_end(ap), -1);
 	va_end(ap);
 	#include <stdio.h>
 	int len = ft_lst_get_len(lst);
