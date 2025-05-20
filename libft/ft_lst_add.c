@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/04/28 22:42:26 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/20 19:08:58 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/20 19:34:08 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	*ft_lst_insert(t_list *lst, void *content, size_t i)
 {
 	t_node	*new;
 	t_node	*curr;
-	size_t	j;
 
 	if (!lst || !content)
 		return (NULL);

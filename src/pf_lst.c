@@ -62,7 +62,6 @@ char	*ft_lst_append_str(t_list *lst, char *s)
 {
 	char		*s_end;
 	size_t		s_len;
-	char		*str;
 
 	s_end = ft_strchr(s, '%');
 	if (s_end == NULL)
@@ -103,16 +102,16 @@ static int	ft_extract_list_strs_len(t_list *lst)
 {
 	size_t	i;
 	int		len;
-	char	*s_curr;
+	size_t	lst_size;
+	char	*str;
 
-	s_curr = ft_lst_getc(lst, 0);
-	i = 1;
+	i = 0;
 	len = 0;
-	while (s_curr)
+	lst_size = ft_lst_getsize(lst);
+	while (i < lst_size)
 	{
-		len += ft_strlen(s_curr);
-		s_curr = ft_lst_getc(lst, i);
-		i++;
+		str = ft_lst_getc(lst, i++);
+		len += ft_strlen(str);
 	}
 	return (len);
 }
