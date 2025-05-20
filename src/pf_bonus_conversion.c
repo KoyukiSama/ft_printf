@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 12:08:40 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/20 19:17:26 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/20 19:59:37 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char	*ft_justify_malloc(t_flags flags, char *str)
 		justify_length -= ft_calculate_zero_s_length(flags, str) \
 						- flags.nbr_neg;
 	if (justify_length <= 0)
-		return (NULL);
+		return (ft_strdup(""));
 	justify = malloc(justify_length + 1);
 	if (!justify)
 		return (NULL);

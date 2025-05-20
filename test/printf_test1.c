@@ -8,7 +8,8 @@ int main(void)
 {
 	//ft_printf("len: %i ✅\n\n", len); // if you want to check length
 	//ft_printf(PPL"<3-----[TESTS 1]: %%c testing-----<3\n"RESET);
-	ft_printf(RED"|%c, %c, %%, %s, %s|\n"RESET, 'a', 'b', "hello", "hello");
+	//ft_printf("|%-5d|\n", 59205);
+	ft_printf("|%c, %c, %%, %s, %-5s, %d, %d|\n", 'a', 'b', "hello", "hello", 52189, 59205);
 	// ft_printf("|%.5c|\n", 'a');
 	// ft_printf("|%05c|\n", 'a');
 	// ft_printf("|%5c|\n", 'a');
@@ -27,7 +28,7 @@ int main(void)
 	// ft_printf("|%6.0s|\n", "hello");
 	// ft_printf("|%-6.0s|\n", "hello");
 	// char *hello = 0;
-	// ft_printf("|%s|", hello);
+	// ft_printf("|%s|\n", hello);
 	// ft_printf("|%-5.0s|\n", hello);
 	// printf("|%-5.0s|\n", hello);
 	// ft_printf("|%.7s|\n", hello);
