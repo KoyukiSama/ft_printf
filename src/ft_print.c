@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/20 19:47:13 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/22 13:19:12 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static int	ft_printf_write(t_list *lst);
 
 int	ft_printf(char *s, ...)
 {
-	int			error;
-	va_list		ap;
+	int		error;
+	va_list	ap;
 	t_list	*lst;
 
 	if (!s)
