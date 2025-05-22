@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/10 18:07:00 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/18 16:07:07 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/22 16:05:59 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,22 @@
 #include "ft_printf.h"
 
 char		*ft_error_type_wrong_flag(t_flags flags, int *error);
-char		*ft_last_error_check(char c, int *error);
+void		ft_last_error_check(char c, int *error);
 int			ft_is_typelist(char c);
-static char	*ft_set_type(char c, t_flags *flags, int *error);
-static char	*ft_set_zero(char **s, t_flags *flags, int *error);
-static char	*ft_set_perc(char **s, t_flags *flags, int *error);
-static char	*ft_set_left_justf(char **s, t_flags *flags, int *error);
+static void	ft_set_type(char c, t_flags *flags, int *error);
+static void	ft_set_zero(char **s, t_flags *flags, int *error);
+static void	ft_set_perc(char **s, t_flags *flags, int *error);
+static void	ft_set_left_justf(char **s, t_flags *flags, int *error);
 
 // get flags
 char	*ft_get_flags(char *s, t_flags *flags, int *error)
 {
-	char	*error_msg;
-
 	*error = 0;
 	s++;
 	if (*s == '0')
-		error_msg = ft_set_zero(&s, flags, error);
+		ft_set_zero(&s, flags, error);
 	if (*s == '-' && !*error)
-		error_msg = ft_set_left_justf(&s, flags, error);
+		ft_set_left_justf(&s, flags, error);
 	else if (ft_isdigit(*s) && !*error)
 	{
 		flags->right_justf = ft_atoi(s);
@@ -39,23 +37,21 @@ char	*ft_get_flags(char *s, t_flags *flags, int *error)
 			s++;
 	}
 	if (*s == '.' && !*error)
-		error_msg = ft_set_perc(&s, flags, error);
+		ft_set_perc(&s, flags, error);
 	if (!*error)
-		error_msg = ft_set_type(*s++, flags, error);
-	if (*error == 1)
-		return (error_msg);
+		ft_set_type(*s++, flags, error);
 	return (s);
 }
 
-static char	*ft_set_left_justf(char **s, t_flags *flags, int *error)
+static void	ft_set_left_justf(char **s, t_flags *flags, int *error)
 {
 	(*s)++;
 	if (**s == '0')
 	{
 		*error = 1;
-		return (ft_strdup(RED"~[FLAGS ERROR]: \"%-\", "\
+		return (ft_putstr_fd(RED"~[FLAGS ERROR]: \"%-\", "\
 							"- flag can not be used together with "\
-							"'0'~\n"RESET));
+							"'0'~\n"RESET, 2));
 	}
 	if (!ft_isdigit(**s))
 		flags->left_justf = 0;
@@ -65,51 +61,48 @@ static char	*ft_set_left_justf(char **s, t_flags *flags, int *error)
 		while (ft_isdigit(**s))
 			(*s)++;
 	}
-	return (NULL);
 }
 
-static char	*ft_set_perc(char **s, t_flags *flags, int *error)
+static void	ft_set_perc(char **s, t_flags *flags, int *error)
 {
 	(*s)++;
 	if (!ft_isdigit(**s))
 	{
 		*error = 1;
-		return (ft_strdup(RED"~[FLAGS ERROR]: \"%.\", "\
-							"no number specified~\n"RESET));
+		return (ft_putstr_fd(RED"~[FLAGS ERROR]: \"%.\", "\
+							"no number specified~\n"RESET, 2));
 	}
 	flags->perc_zero = '.';
 	flags->zeros_width = ft_atoi(*s);
 	while (ft_isdigit(**s))
 		(*s)++;
-	return (NULL);
 }
 
-static char	*ft_set_zero(char **s, t_flags *flags, int *error)
+static void	ft_set_zero(char **s, t_flags *flags, int *error)
 {
 	(*s)++;
 	if (ft_is_typelist(**s))
-		return (NULL);
+		return ;
 	if (**s == '-' || **s == '.')
 	{
 		*error = 1;
-		return (ft_strdup(RED"~[FLAGS ERROR]: \"%0\", "\
+		return (ft_putstr_fd(RED"~[FLAGS ERROR]: \"%0\", "\
 							"0 flag can not be used together with "\
-							"'-' or '.'~\n"RESET));
+							"'-' or '.'~\n"RESET, 2));
 	}
 	if (!ft_isdigit(**s))
 	{
 		*error = 1;
-		return (ft_strdup(RED"~[FLAGS ERROR]: \"%0\", "\
-							"no number specified~\n"RESET));
+		return (ft_putstr_fd(RED"~[FLAGS ERROR]: \"%0\", "\
+							"no number specified~\n"RESET, 2));
 	}
 	flags->perc_zero = '0';
 	flags->zeros_width = ft_atoi(*s);
 	while (ft_isdigit(**s))
 		(*s)++;
-	return (NULL);
 }
 
-static char	*ft_set_type(char c, t_flags *flags, int *error)
+static void	ft_set_type(char c, t_flags *flags, int *error)
 {
 	if (c == 'c')
 		flags->type = 'c';
@@ -130,10 +123,10 @@ static char	*ft_set_type(char c, t_flags *flags, int *error)
 	else
 		return (ft_last_error_check(c, error));
 	if (ft_error_type_wrong_flag(*flags, error))
-		return (ft_strdup(RED"[FLAG ERROR] . or 0 with wrong type\n"RESET));
+		return (ft_putstr_fd(RED"[FLAG ERROR] . "\
+							"or 0 with wrong type\n"RESET, 2));
 	if (flags->type == 'x' || flags->type == 'X' || flags->type == 'u')
 		flags->nbr_neg = 0;
-	return (NULL);
 }
 
 // #include <stdlib.h>

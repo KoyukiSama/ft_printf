@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 22:10:09 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/22 13:19:12 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/22 16:04:00 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ static int	ft_printf_store_strs(char *s, t_list *lst, int error, va_list ap)
 		{
 			ft_reset_flags(&flags);
 			s = ft_get_flags(s, &flags, &error);
-			if (error)
-				return (ft_putstr_fd(s, 1), free(s), 0);
-			if (!ft_lst_add_arg(lst, ap, &flags))
+			if (error || !ft_lst_add_arg(lst, ap, &flags))
 				return (0);
 		}
 		else
