@@ -8,8 +8,8 @@ DIR_SRC		:= ./src
 DIR_LBFT	:= ./libft
 
 SRC_PF		:= ft_print.c \
-				pf_lst.c \
-				pf_bonus_conversion.c \
+				pf_get_va.c \
+				pf_print_out.c \
 				pf_set_flags.c \
 				pf_set_flags2.c \
 				pf_sometoa.c \
@@ -27,14 +27,10 @@ SRC_LBFT	:= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 				ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 				ft_putnbr_fd.c
 
-SRC_LST		:= ft_lst_add.c ft_lst_del.c ft_lst_manage.c \
-				ft_lst_get.c ft_lst_getcont.c
-
 OBJ_PF		:= $(addprefix $(DIR_SRC)/, $(SRC_PF:.c=.o))
 OBJ_LBFT 	:= $(addprefix $(DIR_LBFT)/, $(SRC_LBFT:.c=.o))
-OBJ_LST		:= $(addprefix $(DIR_LBFT)/, $(SRC_LST:.c=.o))
 
-OBJ			:= $(OBJ_PF) $(OBJ_LBFT) $(OBJ_LST)
+OBJ			:= $(OBJ_PF) $(OBJ_LBFT)
 
 all: $(NAME)
 

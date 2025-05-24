@@ -9,8 +9,9 @@ int main(void)
 	//ft_printf("len: %i ✅\n\n", len); // if you want to check length
 	//ft_printf(PPL"<3-----[TESTS 1]: %%c testing-----<3\n"RESET);
 	//ft_printf("|%-5d|\n", 59205);
-	ft_printf("|%c, %c, %%, %s, %s, %d, %02d, %x|\n", 'a', 'b', "hello", "hello", 52189, 59205, 255);
-	// ft_printf("|%.5c|\n", 'a');
+	int byts1 = ft_printf("|%c, %c, %%, %s, %s, %d, %02d, %x|\n", 0, 200, "hello", "hello", 52189, 59205, 255);
+	int byts2 = printf("|%c, %c, %%, %s, %s, %d, %02d, %x|\n", 0, 200, "hello", "hello", 52189, 59205, 255);
+	ft_printf("%i, %i\n", byts1, byts2);
 	// ft_printf("|%05c|\n", 'a');
 	// ft_printf("|%5c|\n", 'a');
 	// ft_printf("|%-5c|\n", 'a');

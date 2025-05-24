@@ -11,25 +11,23 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_lst.h"
 #include "ft_printf.h"
 #include "printf_helpers.h"
 #include <stdlib.h>
 #include <stdarg.h>
 
 static char	*ft_va_to_str(va_list ap, t_flags *flags);
-static int	ft_extract_list_strs_len(t_list *lst);
 
-t_list	*ft_lst_add_arg(t_list *lst, va_list ap, t_flags *flags)
+int	ft_write_var(va_list ap, t_flags *flags, int *bytes_wrote)
 {
 	char	*str;
 
 	str = ft_va_to_str(ap, flags);
 	if (!str)
-		return (NULL);
-	if (!ft_lst_append_flag_strs(lst, *flags, str))
-		return (NULL);
-	return (lst);
+		return (0);
+	if (!ft_write_va_bonus(str, *flags, bytes_wrote))
+		return (0);
+	return (1);
 }
 
 static char	*ft_va_to_str(va_list ap, t_flags *flags)
@@ -58,7 +56,7 @@ static char	*ft_va_to_str(va_list ap, t_flags *flags)
 
 // get's the next % or '\0' if not found
 // and mallocs the str intolst 
-char	*ft_lst_append_str(t_list *lst, char *s)
+char	*ft_write_big_str(char *s, int *bytes_wrote)
 {
 	char		*s_end;
 	size_t		s_len;
@@ -67,51 +65,7 @@ char	*ft_lst_append_str(t_list *lst, char *s)
 	if (s_end == NULL)
 		s_end = ft_strchr(s, '\0');
 	s_len = s_end - s;
-	if (!ft_lst_append(lst, ft_str_mallocpy(s, s_len)))
+	if (!ft_write(s, s_len, bytes_wrote))
 		return (NULL);
 	return (s_end);
-}
-
-// returns parameter len: the length of the new malloced string
-// returns char	*: string from all lst content entries
-char	*ft_extract_list(t_list	*lst, int *len)
-{
-	size_t	i;
-	int		j;
-	char	*s_curr;
-	char	*s_ret;
-
-	*len = ft_extract_list_strs_len(lst);
-	s_ret = malloc(*len + 1);
-	if (!s_ret)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (j < *len)
-	{
-		s_curr = ft_lst_getc(lst, i);
-		while (*s_curr)
-			s_ret[j++] = *s_curr++;
-		i++;
-	}
-	s_ret[j] = '\0';
-	return (s_ret);
-}
-
-static int	ft_extract_list_strs_len(t_list *lst)
-{
-	size_t	i;
-	int		len;
-	size_t	lst_size;
-	char	*str;
-
-	i = 0;
-	len = 0;
-	lst_size = ft_lst_getsize(lst);
-	while (i < lst_size)
-	{
-		str = ft_lst_getc(lst, i++);
-		len += ft_strlen(str);
-	}
-	return (len);
 }
