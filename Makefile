@@ -58,5 +58,6 @@ test:
 	@cc -g -fsanitize=address -fsanitize=leak -Wall -Wextra -Werror -I./include ./test/printf_test1.c ./libftprintf.a
 	@$(MAKE) fclean
 	@./a.out
+	@norminette ./include ./libft ./src | grep "Error"
 
 .PHONY: all clean fclean re test bonus

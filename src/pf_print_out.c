@@ -6,7 +6,7 @@
 /*   By: kclaes <kclaes@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 12:08:40 by kclaes        #+#    #+#                 */
-/*   Updated: 2025/05/24 16:11:45 by kclaes        ########   odam.nl         */
+/*   Updated: 2025/05/24 18:17:46 by kclaes        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "libft.h"
 #include <stdlib.h>
 #include <stddef.h>
-
 
 static int	ft_justify_write(char *str, t_flags flags, int *bytes_wrote);
 static int	ft_zeros_write(char *str, t_flags flags, int *bytes_wrote);
